@@ -7,7 +7,7 @@ import { SectionHead } from "@/components/ui/section";
 import { BookPreview } from "./book-preview";
 import { NameSearch } from "./name-search";
 import { branches, treeStats } from "@/lib/content/tree";
-import type { Announcement, FamilyEvent } from "@/lib/store";
+import type { Announcement, FamilyEvent } from "@/lib/content/desk";
 import type { Bi } from "@/lib/i18n";
 
 const deskCards: {

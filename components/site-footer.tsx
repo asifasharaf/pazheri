@@ -36,7 +36,6 @@ const columns: Column[] = [
     links: [
       { href: "/society", label: { en: "About the society", ml: "സൊസൈറ്റിയെക്കുറിച്ച്" } },
       { href: "/announcements", label: { en: "Announcements", ml: "അറിയിപ്പുകൾ" } },
-      { href: "/admin", label: { en: "Family desk", ml: "കുടുംബ ഡെസ്ക്" } },
     ],
   },
 ];

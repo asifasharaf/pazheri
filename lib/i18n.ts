@@ -210,19 +210,22 @@ export const ui = {
   "register.panchayat": { en: "Panchayat / town", ml: "പഞ്ചായത്ത് / നഗരം" },
   "register.members": { en: "Members in the household", ml: "കുടുംബാംഗങ്ങളുടെ എണ്ണം" },
   "register.notes": { en: "Anything we should know", ml: "മറ്റ് വിവരങ്ങൾ" },
-  "register.submit": { en: "Submit registration", ml: "രജിസ്ട്രേഷൻ സമർപ്പിക്കുക" },
-  "register.submitting": { en: "Submitting…", ml: "സമർപ്പിക്കുന്നു…" },
-  "register.success": {
-    en: "Registration received. The secretariat will contact you on the number you gave.",
-    ml: "രജിസ്ട്രേഷൻ ലഭിച്ചു. നിങ്ങൾ നൽകിയ നമ്പറിൽ സെക്രട്ടേറിയറ്റ് ബന്ധപ്പെടും.",
-  },
-  "register.error": {
-    en: "Something went wrong. Please try again, or call the general secretary.",
-    ml: "എന്തോ പിഴവ് സംഭവിച്ചു. വീണ്ടും ശ്രമിക്കുക, അല്ലെങ്കിൽ ജനറൽ സെക്രട്ടറിയെ വിളിക്കുക.",
-  },
+  "register.submit": { en: "Send by email", ml: "ഇ-മെയിലായി അയക്കുക" },
+  "register.whatsapp": { en: "Send on WhatsApp", ml: "വാട്സ്ആപ്പിൽ അയക്കുക" },
   "register.required": { en: "Required", ml: "നിർബന്ധം" },
   "register.optional": { en: "Optional", ml: "ഐച്ഛികം" },
-  "register.another": { en: "Register another household", ml: "മറ്റൊരു കുടുംബം ചേർക്കുക" },
+  "register.howItWorks": {
+    en: "Fill this in and it opens your mail app or WhatsApp with the details written out, addressed to the general secretary. Nothing is stored on this website — your details go straight to him.",
+    ml: "ഇത് പൂരിപ്പിച്ചാൽ വിവരങ്ങൾ എഴുതിച്ചേർത്ത് നിങ്ങളുടെ മെയിൽ ആപ്പോ വാട്സ്ആപ്പോ തുറക്കും, ജനറൽ സെക്രട്ടറിക്ക് അയക്കാൻ തയ്യാറായി. ഈ വെബ്സൈറ്റിൽ ഒന്നും സൂക്ഷിക്കുന്നില്ല — വിവരങ്ങൾ നേരിട്ട് അദ്ദേഹത്തിന് ലഭിക്കും.",
+  },
+  "register.orCall": {
+    en: "You can also simply call the general secretary, or give your details to your panchayat committee convener.",
+    ml: "ജനറൽ സെക്രട്ടറിയെ നേരിട്ട് വിളിക്കുകയോ പഞ്ചായത്ത് കമ്മിറ്റി കൺവീനർക്ക് വിവരങ്ങൾ നൽകുകയോ ചെയ്യാം.",
+  },
+  "register.mailSubject": {
+    en: "Pazheri family registration",
+    ml: "പഴേരി കുടുംബ രജിസ്ട്രേഷൻ",
+  },
 
   "footer.platform": { en: "The book", ml: "ഗ്രന്ഥം" },
   "footer.family": { en: "Family", ml: "കുടുംബം" },

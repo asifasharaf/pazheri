@@ -10,8 +10,8 @@ The site does two jobs at once:
    message, the foreword, the preface, the dedication, the portrait of Pazheri
    Muhammad Haji, the historical background and the genealogy — set in a reader
    built for long-form Malayalam.
-2. **The family desk.** Household registration, announcements, assemblies and
-   society contacts, all in one place instead of on paper.
+2. **The family desk.** Registration, announcements, assemblies and society
+   contacts, all in one place instead of on paper.
 
 Every page is bilingual: **English and മലയാളം**, switchable from the header,
 the homepage hero and the footer. The choice is remembered per reader.
@@ -20,24 +20,37 @@ the homepage hero and the footer. The choice is remembered per reader.
 
 - Next.js 15 (App Router) · React 19 · TypeScript
 - Tailwind CSS v4, with the design system expressed as `@theme` tokens
-- No database — content is typed data in the repo, runtime state is JSON on disk
-  with an optional webhook relay
+- **Static export.** `next build` writes plain HTML to `out/`. There is no
+  server, no database and no environment to configure — it can be hosted by
+  anything that serves files.
 
 ## Running it
 
 ```bash
 npm install
 npm run dev          # http://localhost:3000
-npm run build && npm run start
+npm run build        # writes the whole site to out/
+npm run start        # serves out/ on http://localhost:3000
 npm run typecheck
 ```
 
-## Environment
+## Hosting
 
-| Variable | Purpose |
-|---|---|
-| `ADMIN_TOKEN` | Opens `/admin` — the family desk. Without it the desk stays closed. |
-| `REGISTRATION_WEBHOOK_URL` | Optional. Registrations are POSTed here as JSON, so a read-only deployment still delivers them. |
+`npm run build` produces `out/` — static HTML, CSS and JS. Point any host at
+that directory:
+
+- **Vercel / Netlify** — import the repo; the static output is detected from
+  `next.config.ts`, no settings and no environment variables needed.
+- **GitHub Pages, S3, Cloudflare Pages, nginx** — upload `out/` as-is. Routes
+  are emitted as `<route>/index.html`, so extensionless URLs work without any
+  rewrite rules.
+
+## Registration, for now
+
+There is no backend, so `/register` does not store anything. The form composes
+the household's details into a message and hands them to the reader's own mail
+app or WhatsApp, addressed to the general secretary. When a backend is added,
+that page is the only one that needs to change.
 
 ## Where the content lives
 
@@ -46,10 +59,14 @@ npm run typecheck
 | `lib/content/book.ts` | The book's chapters, bilingual, block by block |
 | `lib/content/tree.ts` | The genealogy, as a nested structure with search and deep links |
 | `lib/content/society.ts` | The three-tier structure, office bearers, districts |
-| `content/announcements.json` | Seeded announcements shipped with the site |
+| `content/announcements.json` | Announcements shown on the site |
 | `content/events.json` | Assemblies and events, past and upcoming |
+| `lib/content/desk.ts` | Reads and sorts the two JSON files above |
 | `lib/i18n.ts` | Every piece of UI copy, in both languages |
-| `data/` | Runtime state written by the site (git-ignored) |
+
+Publishing an announcement means editing `content/announcements.json` and
+redeploying — the same for assemblies in `content/events.json`. Both are
+bilingual: every entry carries an `en` and an `ml` string.
 
 Adding a chapter means adding an entry to `chapters` in `lib/content/book.ts`;
 its page, its place in the contents and its previous/next links follow

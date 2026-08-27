@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/components/language-provider";
 import { formatDate } from "./announcements-view";
-import type { FamilyEvent } from "@/lib/store";
+import type { FamilyEvent } from "@/lib/content/desk";
 
 function EventList({ events }: { events: FamilyEvent[] }) {
   const { t, b, locale } = useLanguage();

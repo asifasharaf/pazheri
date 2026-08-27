@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/components/language-provider";
-import type { Announcement } from "@/lib/store";
+import type { Announcement } from "@/lib/content/desk";
 
 export function formatDate(iso: string, locale: string) {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString(

@@ -5,5 +5,3 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .env*.local
-/data/registrations.json
-/data/announcements.json

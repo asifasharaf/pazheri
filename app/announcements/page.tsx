@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAnnouncements } from "@/lib/store";
+import { getAnnouncements } from "@/lib/content/desk";
 import { AnnouncementsView } from "@/components/pages/announcements-view";
 
 export const metadata: Metadata = {
@@ -7,10 +7,8 @@ export const metadata: Metadata = {
   description: "Notices published by the state executive of the society.",
 };
 
-// Runtime-added announcements are read from disk on each request.
-export const dynamic = "force-dynamic";
 
-export default async function AnnouncementsPage() {
-  const announcements = await getAnnouncements();
+export default function AnnouncementsPage() {
+  const announcements = getAnnouncements();
   return <AnnouncementsView announcements={announcements} />;
 }

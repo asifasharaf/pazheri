@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getEvents, splitEvents } from "@/lib/store";
+import { getEvents, splitEvents } from "@/lib/content/desk";
 import { EventsView } from "@/components/pages/events-view";
 
 export const metadata: Metadata = {

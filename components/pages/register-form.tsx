@@ -4,49 +4,57 @@ import { useState } from "react";
 import { useLanguage } from "@/components/language-provider";
 import { branches } from "@/lib/content/tree";
 import { districts } from "@/lib/content/society";
+import { bookMeta } from "@/lib/content/book";
 
-type Status = "idle" | "sending" | "sent" | "error";
+/** Order and labels used when writing the details out as a message. */
+const FIELDS: { name: string; label: { en: string; ml: string } }[] = [
+  { name: "fullName", label: { en: "Name", ml: "പേര്" } },
+  { name: "houseName", label: { en: "House", ml: "വീട്ടുപേര്" } },
+  { name: "branch", label: { en: "Branch", ml: "ശാഖ" } },
+  { name: "ancestor", label: { en: "Known ancestor", ml: "അറിയാവുന്ന പൂർവ്വികൻ" } },
+  { name: "phone", label: { en: "Mobile", ml: "മൊബൈൽ" } },
+  { name: "email", label: { en: "Email", ml: "ഇ-മെയിൽ" } },
+  { name: "district", label: { en: "District", ml: "ജില്ല" } },
+  { name: "panchayat", label: { en: "Panchayat / town", ml: "പഞ്ചായത്ത് / നഗരം" } },
+  { name: "members", label: { en: "Members", ml: "അംഗങ്ങൾ" } },
+  { name: "notes", label: { en: "Notes", ml: "മറ്റ് വിവരങ്ങൾ" } },
+];
 
 export function RegisterForm() {
   const { t, b } = useLanguage();
-  const [status, setStatus] = useState<Status>("idle");
+  const [form, setForm] = useState<HTMLFormElement | null>(null);
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const payload = Object.fromEntries(new FormData(form).entries());
-    setStatus("sending");
-    try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      form.reset();
-      setStatus("sent");
-    } catch {
-      setStatus("error");
-    }
+  /**
+   * There is no server behind this site, so the form composes the details
+   * into a message and hands them to the reader's own mail app or WhatsApp.
+   */
+  function compose(): string | null {
+    if (!form || !form.reportValidity()) return null;
+    const data = new FormData(form);
+    return FIELDS.map(({ name, label }) => {
+      const value = String(data.get(name) ?? "").trim();
+      return value ? `${b(label)}: ${value}` : null;
+    })
+      .filter(Boolean)
+      .join("\n");
   }
 
-  if (status === "sent") {
-    return (
-      <div className="page-shell py-24">
-        <div className="card mx-auto max-w-xl p-8 text-center">
-          <span className="badge-new">{t("nav.register")}</span>
-          <h1 className="display-voice mt-5 text-heading-sm text-ink-black">
-            {t("register.success")}
-          </h1>
-          <button
-            type="button"
-            className="btn btn-secondary mt-8"
-            onClick={() => setStatus("idle")}
-          >
-            {t("register.another")}
-          </button>
-        </div>
-      </div>
+  function sendByEmail() {
+    const body = compose();
+    if (body === null) return;
+    const subject = encodeURIComponent(t("register.mailSubject"));
+    window.location.href = `mailto:${bookMeta.contact.email}?subject=${subject}&body=${encodeURIComponent(body)}`;
+  }
+
+  function sendByWhatsApp() {
+    const body = compose();
+    if (body === null) return;
+    const number = bookMeta.contact.phone.replace(/[^0-9]/g, "");
+    const text = `${t("register.mailSubject")}\n\n${body}`;
+    window.open(
+      `https://wa.me/${number}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer",
     );
   }
 
@@ -61,7 +69,15 @@ export function RegisterForm() {
           {t("register.subtitle")}
         </p>
 
-        <form onSubmit={onSubmit} className="card mt-10 p-6 lg:p-8">
+        <p className="mt-6 rounded-[12px] border border-mist-50 bg-paper p-4 text-[14px] font-medium text-slate-600">
+          {t("register.howItWorks")}
+        </p>
+
+        <form
+          ref={setForm}
+          onSubmit={(event) => event.preventDefault()}
+          className="card mt-10 p-6 lg:p-8"
+        >
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <label className="label" htmlFor="fullName">
@@ -171,25 +187,27 @@ export function RegisterForm() {
             </div>
           </div>
 
-          {status === "error" ? (
-            <p className="mt-6 rounded-[10px] border border-mist-50 bg-paper p-4 text-[14px] font-medium text-carbon">
-              {t("register.error")}
-            </p>
-          ) : null}
-
-          <div className="mt-8 flex items-center gap-4">
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={status === "sending"}
-            >
-              {status === "sending" ? t("register.submitting") : t("register.submit")}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <button type="button" className="btn btn-primary" onClick={sendByEmail}>
+              {t("register.submit")}
             </button>
-            <span className="text-[13px] font-medium text-slate-600">
-              {t("register.required")}: {t("register.fullName")}, {t("register.phone")},{" "}
-              {t("register.branch")}, {t("register.district")}
-            </span>
+            <button type="button" className="btn btn-secondary" onClick={sendByWhatsApp}>
+              {t("register.whatsapp")}
+            </button>
           </div>
+          <p className="mt-4 text-[13px] font-medium text-slate-600">
+            {t("register.required")}: {t("register.fullName")}, {t("register.phone")},{" "}
+            {t("register.branch")}, {t("register.district")}
+          </p>
+          <p className="mt-2 text-[13px] font-medium text-slate-600">
+            {t("register.orCall")}{" "}
+            <a
+              className="link-accent"
+              href={`tel:${bookMeta.contact.phone.replace(/\s/g, "")}`}
+            >
+              {bookMeta.contact.phone}
+            </a>
+          </p>
         </form>
       </div>
     </div>
