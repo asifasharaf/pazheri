@@ -1,0 +1,44 @@
+[
+  {
+    "id": "2026-state-assembly",
+    "date": "2026-08-10",
+    "pinned": true,
+    "category": { "en": "Assembly", "ml": "കുടുംബ യോഗം" },
+    "title": {
+      "en": "Registration open for the 2026 state family assembly",
+      "ml": "2026 സംസ്ഥാന കുടുംബ യോഗത്തിനുള്ള രജിസ്ട്രേഷൻ ആരംഭിച്ചു"
+    },
+    "body": {
+      "en": "Households from all fourteen districts are asked to register before 30 November. Panchayat committee conveners will collect entries from families without internet access; regional committees will consolidate and forward them to the state secretariat.",
+      "ml": "പതിനാല് ജില്ലകളിലെയും കുടുംബങ്ങൾ നവംബർ 30-ന് മുൻപ് രജിസ്റ്റർ ചെയ്യണം. ഇന്റർനെറ്റ് സൗകര്യമില്ലാത്ത കുടുംബങ്ങളിൽ നിന്ന് പഞ്ചായത്ത് കമ്മിറ്റി കൺവീനർമാർ വിവരങ്ങൾ ശേഖരിക്കും; മേഖലാ കമ്മിറ്റികൾ ക്രോഡീകരിച്ച് സംസ്ഥാന സെക്രട്ടേറിയറ്റിന് കൈമാറും."
+    }
+  },
+  {
+    "id": "scholarship-2026",
+    "date": "2026-07-02",
+    "pinned": false,
+    "category": { "en": "Education", "ml": "വിദ്യാഭ്യാസം" },
+    "title": {
+      "en": "Society scholarship applications for the 2026–27 academic year",
+      "ml": "2026-27 അധ്യയന വർഷത്തെ സൊസൈറ്റി സ്കോളർഷിപ്പ് അപേക്ഷകൾ"
+    },
+    "body": {
+      "en": "The educational wing invites applications from students of the family entering degree, professional and post-graduate courses. Applications should reach the general secretary with mark lists and a letter from the panchayat committee.",
+      "ml": "ഡിഗ്രി, പ്രൊഫഷണൽ, ബിരുദാനന്തര കോഴ്സുകളിൽ പ്രവേശനം നേടുന്ന കുടുംബാംഗങ്ങളായ വിദ്യാർത്ഥികളിൽ നിന്ന് വിദ്യാഭ്യാസ വിഭാഗം അപേക്ഷ ക്ഷണിക്കുന്നു. മാർക്ക് ലിസ്റ്റും പഞ്ചായത്ത് കമ്മിറ്റിയുടെ കത്തും സഹിതം ജനറൽ സെക്രട്ടറിക്ക് അപേക്ഷ ലഭിക്കണം."
+    }
+  },
+  {
+    "id": "genealogy-corrections",
+    "date": "2026-05-18",
+    "pinned": false,
+    "category": { "en": "The book", "ml": "ഗ്രന്ഥം" },
+    "title": {
+      "en": "Corrections and additions to the genealogy are being collected",
+      "ml": "വംശാവലിയിലെ തിരുത്തലുകളും കൂട്ടിച്ചേർക്കലുകളും സ്വീകരിക്കുന്നു"
+    },
+    "body": {
+      "en": "Families who find a name missing, misspelt or placed in the wrong branch should write to the author with the details. The Peruvalloor and Kondotty branches in particular need further entries from their elders.",
+      "ml": "പേര് വിട്ടുപോയതോ തെറ്റായി എഴുതിയതോ തെറ്റായ ശാഖയിൽ ചേർത്തതോ ശ്രദ്ധയിൽപ്പെട്ടാൽ വിവരങ്ങൾ സഹിതം ഗ്രന്ഥകർത്താവിന് എഴുതുക. പ്രത്യേകിച്ച് പെരുവള്ളൂർ, കൊണ്ടോട്ടി ശാഖകളിലെ കാരണവന്മാരിൽ നിന്ന് കൂടുതൽ വിവരങ്ങൾ ആവശ്യമാണ്."
+    }
+  }
+]

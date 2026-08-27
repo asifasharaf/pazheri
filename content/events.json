@@ -1,0 +1,57 @@
+[
+  {
+    "id": "state-assembly-2026",
+    "date": "2026-12-20",
+    "title": {
+      "en": "Second state family assembly",
+      "ml": "രണ്ടാം സംസ്ഥാന കുടുംബ യോഗം"
+    },
+    "venue": { "en": "To be announced", "ml": "പിന്നീട് അറിയിക്കും" },
+    "detail": {
+      "en": "The full family gathering, held once every few years, with the state council and executive elections.",
+      "ml": "സംസ്ഥാന കൗൺസിൽ, എക്സിക്യൂട്ടീവ് തിരഞ്ഞെടുപ്പുകൾ ഉൾപ്പെടുന്ന സമ്പൂർണ കുടുംബ സംഗമം."
+    }
+  },
+  {
+    "id": "malabar-regional-2026",
+    "date": "2026-10-11",
+    "title": {
+      "en": "Malabar regional committee meeting",
+      "ml": "മലബാർ മേഖലാ കമ്മിറ്റി യോഗം"
+    },
+    "venue": { "en": "Kondotty", "ml": "കൊണ്ടോട്ടി" },
+    "detail": {
+      "en": "Seven northern districts. Panchayat conveners to bring their registration collections.",
+      "ml": "ഏഴ് വടക്കൻ ജില്ലകൾ. പഞ്ചായത്ത് കൺവീനർമാർ ശേഖരിച്ച രജിസ്ട്രേഷൻ വിവരങ്ങൾ സഹിതം എത്തണം."
+    }
+  },
+  {
+    "id": "society-formation-2013",
+    "date": "2013-01-12",
+    "title": {
+      "en": "Formation of the Educational & Charitable Society",
+      "ml": "എജ്യുക്കേഷണൽ & ചാരിറ്റബിൾ സൊസൈറ്റി രൂപീകരണം"
+    },
+    "venue": {
+      "en": "Pazheri Palace, Thenkara, Mannarkkad",
+      "ml": "പഴേരി പാലസ്, തെങ്കര, മണ്ണാർക്കാട്"
+    },
+    "detail": {
+      "en": "Registered as No. IDK/TC/96/2013 with Pazheri Shareef Haji as chairman.",
+      "ml": "പഴേരി ഷെരീഫ് ഹാജി ചെയർമാനായി No. IDK/TC/96/2013 ആയി രജിസ്റ്റർ ചെയ്തു."
+    }
+  },
+  {
+    "id": "first-state-assembly-2012",
+    "date": "2012-11-18",
+    "title": {
+      "en": "First state family assembly",
+      "ml": "പ്രഥമ സംസ്ഥാന കുടുംബ യോഗം"
+    },
+    "venue": { "en": "Karipur Hajj House", "ml": "കരിപ്പൂർ ഹജ്ജ് ഹൗസ്" },
+    "detail": {
+      "en": "Inaugurated by Panakkad Sayyid Abbasali Shihab Thangal.",
+      "ml": "പാണക്കാട് സയ്യിദ് അബ്ബാസലി ശിഹാബ് തങ്ങൾ ഉദ്ഘാടനം ചെയ്തു."
+    }
+  }
+]
