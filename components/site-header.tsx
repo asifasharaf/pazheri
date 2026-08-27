@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useLanguage } from "./language-provider";
 import { LanguageSwitcher } from "./language-switcher";
-import { PromoBanner } from "./promo-banner";
 import { Wordmark } from "./wordmark";
 import type { UiKey } from "@/lib/i18n";
 
@@ -23,7 +22,6 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 bg-page-canvas/90 backdrop-blur-sm">
-      <PromoBanner />
       <div className="border-b border-mist-50">
         <div className="page-shell flex h-[68px] items-center justify-between gap-6">
           <Link

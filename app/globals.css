@@ -39,6 +39,9 @@
     serif;
   --font-malayalam: var(--font-malayalam-sans), var(--font-inter-sans),
     ui-sans-serif, system-ui, sans-serif;
+  /* Super headings — Malayalam-first, carries Latin too. */
+  --font-super: var(--font-super-heading), var(--font-inter-display),
+    ui-sans-serif, system-ui, sans-serif;
 
   /* Typography — scale */
   --text-caption: 11px;
@@ -129,6 +132,49 @@
 }
 
 @layer components {
+  /*
+   * Super heading — the single biggest heading on a page. Gayathri sets both
+   * scripts, so an English and a Malayalam hero share one voice. Sized
+   * mobile-first: the desktop step is added, never subtracted.
+   */
+  .super-heading {
+    font-family: var(--font-super);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.14;
+    letter-spacing: -0.5px;
+  }
+
+  @media (min-width: 640px) {
+    .super-heading {
+      font-size: 46px;
+      line-height: 1.08;
+      letter-spacing: -0.7px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .super-heading {
+      font-size: 62px;
+      line-height: 1.04;
+      letter-spacing: -1.1px;
+    }
+  }
+
+  /* Malayalam needs air: no negative tracking, a looser leading. */
+  [lang="ml"] .super-heading,
+  :lang(ml) .super-heading {
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+
+  @media (min-width: 1024px) {
+    [lang="ml"] .super-heading,
+    :lang(ml) .super-heading {
+      line-height: 1.22;
+    }
+  }
+
   /* Display voice — InterDisplay 600, tight tracking, near-1.0 leading */
   .display-voice {
     font-family: var(--font-interdisplay);

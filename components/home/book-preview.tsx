@@ -13,19 +13,19 @@ export function BookPreview() {
 
   return (
     <div className="card-screenshot mx-auto w-full max-w-3xl">
-      <div className="border-b border-mist-50 bg-paper px-6 py-3">
+      <div className="border-b border-mist-50 bg-paper px-4 py-3 sm:px-6">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-cloud-200" />
           <span className="h-2.5 w-2.5 rounded-full bg-cloud-200" />
           <span className="h-2.5 w-2.5 rounded-full bg-cloud-200" />
-          <span className="ml-3 truncate text-[12px] font-medium text-slate-600">
+          <span className="ml-3 min-w-0 truncate text-[12px] font-medium text-slate-600">
             {b(bookMeta.title)} · {b(bookMeta.firstPublished)}
           </span>
         </div>
       </div>
 
-      <div className="grid gap-0 sm:grid-cols-[1.1fr_1fr]">
-        <div className="border-b border-mist-50 px-8 py-10 sm:border-b-0 sm:border-r">
+      <div className="grid min-w-0 gap-0 sm:grid-cols-[1.1fr_1fr]">
+        <div className="min-w-0 border-b border-mist-50 px-5 py-8 sm:border-b-0 sm:border-r sm:px-8 sm:py-10">
           <p className="text-[11px] font-medium tracking-[0.06em] text-slate-700 uppercase">
             {b({ en: "Title page", ml: "ശീർഷക താൾ" })}
           </p>
@@ -50,11 +50,11 @@ export function BookPreview() {
           </dl>
         </div>
 
-        <ol className="divide-y divide-mist-50">
+        <ol className="min-w-0 divide-y divide-mist-50">
           {chapters.map((chapter) => (
             <li
               key={chapter.slug}
-              className="flex items-baseline gap-3 px-6 py-[13px]"
+              className="flex min-w-0 items-baseline gap-3 px-5 py-[13px] sm:px-6"
             >
               <span className="w-5 shrink-0 text-[12px] font-medium text-fog-400">
                 {chapter.index}

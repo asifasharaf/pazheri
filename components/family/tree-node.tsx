@@ -54,6 +54,21 @@ export function TreeNode({ person, depth, expanded, toggle, focusId }: Props) {
               <span className="display-voice text-[17px] tracking-[-0.017em] text-ink-black">
                 {b(person.name)}
               </span>
+              {person.registered ? (
+                <span
+                  className={
+                    person.registered === "local"
+                      ? "eyebrow py-0.5 text-[11px]"
+                      : "badge-new"
+                  }
+                >
+                  {t(
+                    person.registered === "local"
+                      ? "tree.localOnly"
+                      : "tree.registered",
+                  )}
+                </span>
+              ) : null}
               {hasChildren ? (
                 <span className="text-[12px] font-medium text-slate-700">
                   {person.children?.length}{" "}

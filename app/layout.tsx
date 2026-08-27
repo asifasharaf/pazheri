@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Inter_Tight, Noto_Sans_Malayalam, Source_Serif_4 } from "next/font/google";
+import {
+  Gayathri,
+  Inter,
+  Inter_Tight,
+  Noto_Sans_Malayalam,
+  Source_Serif_4,
+} from "next/font/google";
 import { LanguageProvider } from "@/components/language-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -28,6 +34,15 @@ const editorialSerif = Source_Serif_4({
   display: "swap",
 });
 
+// Super headings only — the one biggest heading on a page. Malayalam-first,
+// and it carries Latin too, so both scripts speak in a single voice.
+const superHeading = Gayathri({
+  subsets: ["malayalam", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-super-heading",
+  display: "swap",
+});
+
 const malayalam = Noto_Sans_Malayalam({
   subsets: ["malayalam"],
   weight: ["400", "500", "600", "700"],
@@ -51,8 +66,8 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
-      className={`${inter.variable} ${interDisplay.variable} ${editorialSerif.variable} ${malayalam.variable}`}
+      lang="ml"
+      className={`${inter.variable} ${interDisplay.variable} ${editorialSerif.variable} ${malayalam.variable} ${superHeading.variable}`}
     >
       <body className="min-h-dvh bg-page-canvas text-ink-black antialiased">
         <LanguageProvider>

@@ -13,8 +13,13 @@ The site does two jobs at once:
 2. **The family desk.** Registration, announcements, assemblies and society
    contacts, all in one place instead of on paper.
 
-Every page is bilingual: **English and മലയാളം**, switchable from the header,
-the homepage hero and the footer. The choice is remembered per reader.
+Every page is bilingual: **മലയാളം and English**. Malayalam is the default —
+a first-time reader lands in it and switches to English if they want to. The
+choice is remembered per reader, and the switcher sits in the header, the
+homepage hero and the footer.
+
+The site is built mobile first; see `AGENTS.md` for the conventions that
+apply to any change.
 
 ## Stack
 
@@ -47,10 +52,18 @@ that directory:
 
 ## Registration, for now
 
-There is no backend, so `/register` does not store anything. The form composes
-the household's details into a message and hands them to the reader's own mail
-app or WhatsApp, addressed to the general secretary. When a backend is added,
-that page is the only one that needs to change.
+There is no backend, so registration works with files instead.
+
+Filling in `/register` and pressing save does two things: the household is
+written into that browser, so it appears in the family tree on that device
+straight away, and the same entry downloads as a markdown file. Sending that
+file to the general secretary — the email and WhatsApp buttons do it — and
+committing it to `content/registrations/` publishes it for everyone; the tree
+picks it up at build time and grafts it onto the branch it names.
+
+Entries carry no phone number or email: the repository is public, so contact
+details travel only in the private message. See
+`content/registrations/README.md` for the format.
 
 ## Where the content lives
 

@@ -43,7 +43,7 @@ export function EventsView({
     <div className="page-shell py-16 lg:py-24">
       <div className="max-w-2xl">
         <span className="eyebrow">{t("section.manage.eyebrow")}</span>
-        <h1 className="display-voice mt-6 text-heading text-ink-black lg:text-heading-lg">
+        <h1 className="super-heading mt-6 text-ink-black">
           {t("events.title")}
         </h1>
         <p className="mt-4 text-body-lg font-medium text-slate-600">

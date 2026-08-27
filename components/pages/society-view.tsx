@@ -14,7 +14,7 @@ export function SocietyView() {
         <span className="eyebrow">
           {t("society.registration")} {society.registrationNo}
         </span>
-        <h1 className="display-voice mt-6 text-heading text-ink-black lg:text-heading-lg">
+        <h1 className="super-heading mt-6 text-ink-black">
           {b(society.name)}
         </h1>
         <p className="mt-4 text-body-lg font-medium text-slate-600">

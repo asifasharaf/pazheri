@@ -1,7 +1,9 @@
 export type Locale = "en" | "ml";
 
-export const LOCALES: Locale[] = ["en", "ml"];
-export const DEFAULT_LOCALE: Locale = "en";
+export const LOCALES: Locale[] = ["ml", "en"];
+// Malayalam is the language of the book and of most readers; English is the
+// translation offered alongside it.
+export const DEFAULT_LOCALE: Locale = "ml";
 export const LOCALE_STORAGE_KEY = "pazheri.locale";
 
 /** A string that exists in both site languages. */
@@ -38,12 +40,6 @@ export const ui = {
     ml: "പഴേരി ഫാമിലി എജ്യുക്കേഷണൽ & ചാരിറ്റബിൾ സൊസൈറ്റി",
   },
 
-  "banner.text": {
-    en: "Family registration for the 2026 state assembly is now open",
-    ml: "2026 സംസ്ഥാന കുടുംബ യോഗത്തിനുള്ള രജിസ്ട്രേഷൻ ആരംഭിച്ചു",
-  },
-  "banner.cta": { en: "Register", ml: "രജിസ്റ്റർ ചെയ്യുക" },
-  "banner.dismiss": { en: "Dismiss announcement", ml: "അറിയിപ്പ് അടയ്ക്കുക" },
 
   "nav.book": { en: "The Book", ml: "ഗ്രന്ഥം" },
   "nav.tree": { en: "Family Tree", ml: "വംശാവലി" },
@@ -152,6 +148,10 @@ export const ui = {
   "book.prev": { en: "Previous", ml: "മുൻപത്തേത്" },
   "book.next": { en: "Next", ml: "അടുത്തത്" },
   "book.backToContents": { en: "All chapters", ml: "എല്ലാ അധ്യായങ്ങളും" },
+  "book.index": { en: "In this book", ml: "ഈ ഗ്രന്ഥത്തിൽ" },
+  "book.onThisPage": { en: "On this page", ml: "ഈ താളിൽ" },
+  "book.openIndex": { en: "Chapters", ml: "അധ്യായങ്ങൾ" },
+  "book.closeIndex": { en: "Close", ml: "അടയ്ക്കുക" },
   "book.readingNote": {
     en: "This is a faithful digital edition. Malayalam is the language of record; the English text is a translation for readers outside Kerala.",
     ml: "ഇത് ഗ്രന്ഥത്തിന്റെ വിശ്വസ്ത ഡിജിറ്റൽ പതിപ്പാണ്. മലയാളമാണ് മൂലഭാഷ; ഇംഗ്ലീഷ് പാഠം കേരളത്തിന് പുറത്തുള്ള വായനക്കാർക്കുള്ള പരിഭാഷയാണ്.",
@@ -164,6 +164,19 @@ export const ui = {
   "tree.branch": { en: "branch", ml: "ശാഖ" },
   "tree.branches": { en: "branches", ml: "ശാഖകൾ" },
   "tree.generation": { en: "Generation", ml: "തലമുറ" },
+  "tree.registered": { en: "Registered", ml: "രജിസ്റ്റർ ചെയ്തു" },
+  "tree.localOnly": {
+    en: "On this device only",
+    ml: "ഈ ഉപകരണത്തിൽ മാത്രം",
+  },
+  "tree.unplaced": {
+    en: "Registered, awaiting placement",
+    ml: "രജിസ്റ്റർ ചെയ്തു, ശാഖ കണ്ടെത്താനുണ്ട്",
+  },
+  "tree.unplacedHelp": {
+    en: "These households have registered but have not yet been traced to a branch. The secretariat places each one against the genealogy before it joins the tree.",
+    ml: "ഈ കുടുംബങ്ങൾ രജിസ്റ്റർ ചെയ്തിട്ടുണ്ടെങ്കിലും ശാഖ കണ്ടെത്തിയിട്ടില്ല. വംശാവലിയുമായി ഒത്തുനോക്കി സെക്രട്ടേറിയറ്റ് ഓരോന്നും ചേർക്കും.",
+  },
   "tree.legend": {
     en: "Names carried in the book are shown with their branch code. Tap a name to open its descendants.",
     ml: "ഗ്രന്ഥത്തിലെ പേരുകൾ ശാഖാ കോഡ് സഹിതം കാണിച്ചിരിക്കുന്നു. പേരിൽ ടാപ്പ് ചെയ്ത് പിൻതലമുറയെ കാണാം.",
@@ -221,6 +234,20 @@ export const ui = {
   "register.orCall": {
     en: "You can also simply call the general secretary, or give your details to your panchayat committee convener.",
     ml: "ജനറൽ സെക്രട്ടറിയെ നേരിട്ട് വിളിക്കുകയോ പഞ്ചായത്ത് കമ്മിറ്റി കൺവീനർക്ക് വിവരങ്ങൾ നൽകുകയോ ചെയ്യാം.",
+  },
+  "register.save": { en: "Save my entry", ml: "എന്റെ എൻട്രി സേവ് ചെയ്യുക" },
+  "register.saved": {
+    en: "Saved. Your household now appears in the family tree on this device, and the entry file has been downloaded.",
+    ml: "സേവ് ചെയ്തു. ഈ ഉപകരണത്തിലെ വംശാവലിയിൽ നിങ്ങളുടെ കുടുംബം കാണാം, എൻട്രി ഫയൽ ഡൗൺലോഡ് ചെയ്തിട്ടുമുണ്ട്.",
+  },
+  "register.savedNext": {
+    en: "To publish it for everyone, send the downloaded file to the general secretary — the buttons below do that for you.",
+    ml: "എല്ലാവർക്കും കാണാൻ, ഡൗൺലോഡ് ചെയ്ത ഫയൽ ജനറൽ സെക്രട്ടറിക്ക് അയക്കുക — താഴെയുള്ള ബട്ടണുകൾ അത് ചെയ്യും.",
+  },
+  "register.viewInTree": { en: "See it in the family tree", ml: "വംശാവലിയിൽ കാണുക" },
+  "register.privacy": {
+    en: "The entry file carries no phone number or email — those go only in the message to the general secretary.",
+    ml: "എൻട്രി ഫയലിൽ ഫോൺ നമ്പറോ ഇ-മെയിലോ ഇല്ല — അവ ജനറൽ സെക്രട്ടറിക്കുള്ള സന്ദേശത്തിൽ മാത്രം.",
   },
   "register.mailSubject": {
     en: "Pazheri family registration",

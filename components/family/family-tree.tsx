@@ -5,6 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "@/components/language-provider";
 import { TreeNode } from "./tree-node";
 import { allNames, branches, pathToNode, root, type Person } from "@/lib/content/tree";
+import { mergeRegister, unplacedHouseholds } from "@/lib/content/merge-register";
+import { readLocalHouseholds, type Household } from "@/lib/registrations";
 
 function collectIds(person: Person, out: string[] = []): string[] {
   out.push(person.id);
@@ -14,11 +16,20 @@ function collectIds(person: Person, out: string[] = []): string[] {
 
 const allIds = collectIds(root);
 
-export function FamilyTree() {
+export function FamilyTree({ households }: { households: Household[] }) {
   const { t, b } = useLanguage();
   const params = useSearchParams();
   const focusId = params.get("focus") ?? undefined;
   const branchId = params.get("branch") ?? undefined;
+
+  // Entries saved in this browser but not yet published, so a family sees
+  // its own registration in the tree straight away.
+  const [local, setLocal] = useState<Household[]>([]);
+  useEffect(() => setLocal(readLocalHouseholds()), []);
+
+  const all = useMemo(() => [...households, ...local], [households, local]);
+  const tree = useMemo(() => mergeRegister(root, all), [all]);
+  const unplaced = useMemo(() => unplacedHouseholds(root, all), [all]);
 
   const initial = useMemo(() => {
     const ids = new Set<string>(["root", "a"]);
@@ -29,10 +40,27 @@ export function FamilyTree() {
 
   const [expanded, setExpanded] = useState<Set<string>>(initial);
 
-  // Re-open the path whenever the deep link changes.
+  /**
+   * A household saved on this device is grafted onto a branch that starts
+   * collapsed, so without this it would be "in the tree" but invisible.
+   * Open the path down to each one.
+   */
+  const localPaths = useMemo(() => {
+    const ids = new Set<string>();
+    for (const household of local) {
+      const code = household.branch.trim().toUpperCase();
+      const branch = branches.find((node) => node.code?.toUpperCase() === code);
+      if (!branch) continue;
+      for (const id of pathToNode(branch.id)) ids.add(id);
+      ids.add(branch.id);
+    }
+    return ids;
+  }, [local]);
+
+  // Re-open the path whenever the deep link or the local register changes.
   useEffect(() => {
-    setExpanded(new Set(initial));
-  }, [initial]);
+    setExpanded(new Set([...initial, ...localPaths]));
+  }, [initial, localPaths]);
 
   // Bring the focused node into view once its ancestors are open.
   useEffect(() => {
@@ -54,7 +82,7 @@ export function FamilyTree() {
     <div className="page-shell py-16 lg:py-24">
       <div className="max-w-2xl">
         <span className="eyebrow">{t("section.tree.eyebrow")}</span>
-        <h1 className="display-voice mt-6 text-heading text-ink-black lg:text-heading-lg">
+        <h1 className="super-heading mt-6 text-ink-black">
           {t("tree.title")}
         </h1>
         <p className="mt-4 text-body-lg font-medium text-slate-600">
@@ -103,13 +131,53 @@ export function FamilyTree() {
 
       <ul className="mt-10 space-y-3">
         <TreeNode
-          person={root}
+          person={tree}
           depth={0}
           expanded={expanded}
           toggle={toggle}
           focusId={focusId}
         />
       </ul>
+
+      {unplaced.length > 0 ? (
+        <section className="mt-14">
+          <h2 className="display-voice text-subheading text-ink-black">
+            {t("tree.unplaced")}
+          </h2>
+          <p className="mt-2 max-w-2xl text-[14px] font-medium text-slate-600">
+            {t("tree.unplacedHelp")}
+          </p>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {unplaced.map((household) => (
+              <li key={household.id} className="card-flat p-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="display-voice text-[16px] text-ink-black">
+                    {b(household.name)}
+                  </span>
+                  <span
+                    className={
+                      household.origin === "local"
+                        ? "eyebrow py-0.5 text-[11px]"
+                        : "badge-new"
+                    }
+                  >
+                    {t(
+                      household.origin === "local"
+                        ? "tree.localOnly"
+                        : "tree.registered",
+                    )}
+                  </span>
+                </div>
+                {household.district ? (
+                  <p className="mt-1 text-[13px] font-medium text-slate-600">
+                    {household.district}
+                  </p>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
   );
 }

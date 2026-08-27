@@ -44,7 +44,7 @@ export function NameSearch() {
                     href={`/family-tree?focus=${encodeURIComponent(hit.id)}`}
                     className="flex items-baseline justify-between gap-4 px-4 py-3 hover:bg-paper"
                   >
-                    <span className="min-w-0">
+                    <span className="min-w-0 flex-1">
                       <span className="block truncate text-[15px] font-medium text-ink-black">
                         {b(hit.name)}
                       </span>

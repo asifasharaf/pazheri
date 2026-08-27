@@ -17,6 +17,12 @@ export type Person = {
    * of empty nodes.
    */
   issue?: Bi[];
+  /**
+   * Set on nodes that came from the register rather than the printed book.
+   * "published" is committed to the repository; "local" is saved in this
+   * browser only and visible to nobody else.
+   */
+  registered?: "published" | "local";
 };
 
 function P(

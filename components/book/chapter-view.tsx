@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/components/language-provider";
+import { BookIndexRail } from "./book-index-rail";
 import type { BookChapter } from "@/lib/content/book";
 
 export function ChapterView({
@@ -16,7 +17,9 @@ export function ChapterView({
   const { t, b } = useLanguage();
 
   return (
-    <article className="page-shell py-16 lg:py-24">
+    <article className="page-shell py-12 lg:py-20">
+      <BookIndexRail current={chapter} />
+
       <div className="mx-auto max-w-[720px]">
         <Link href="/book" className="link-accent text-[14px]">
           ← {t("book.backToContents")}
@@ -26,7 +29,7 @@ export function ChapterView({
           <span className="eyebrow">
             {t("book.chapter")} {chapter.index}
           </span>
-          <h1 className="display-voice mt-5 text-heading-sm text-ink-black lg:text-heading">
+          <h1 className="super-heading mt-5 text-ink-black">
             {b(chapter.title)}
           </h1>
           {chapter.byline ? (
@@ -48,7 +51,9 @@ export function ChapterView({
                 return (
                   <h2
                     key={index}
-                    className="display-voice mt-12 mb-5 text-subheading text-ink-black first:mt-0"
+                    id={`section-${index}`}
+                    data-chapter-heading
+                    className="display-voice mt-12 mb-5 scroll-mt-32 text-subheading text-ink-black first:mt-0"
                   >
                     {b(block.text)}
                   </h2>
@@ -93,20 +98,36 @@ export function ChapterView({
           })}
         </div>
 
-        <nav className="mt-16 flex flex-col gap-3 border-t border-mist-50 pt-8 sm:flex-row sm:justify-between">
+        <nav className="mt-16 grid gap-3 border-t border-mist-50 pt-8 sm:grid-cols-2">
           {prev ? (
-            <Link href={`/book/${prev.slug}`} className="btn btn-secondary">
-              ← {t("book.prev")}: {b(prev.title)}
+            <Link
+              href={`/book/${prev.slug}`}
+              className="card-flat block px-4 py-3 hover:bg-paper"
+            >
+              <span className="block text-[12px] font-medium text-slate-700">
+                ← {t("book.prev")}
+              </span>
+              <span className="mt-0.5 block text-[15px] font-medium text-ink-black">
+                {b(prev.title)}
+              </span>
             </Link>
           ) : (
-            <span />
+            <span className="hidden sm:block" />
           )}
           {next ? (
-            <Link href={`/book/${next.slug}`} className="btn btn-secondary">
-              {t("book.next")}: {b(next.title)} →
+            <Link
+              href={`/book/${next.slug}`}
+              className="card-flat block px-4 py-3 text-right hover:bg-paper"
+            >
+              <span className="block text-[12px] font-medium text-slate-700">
+                {t("book.next")} →
+              </span>
+              <span className="mt-0.5 block text-[15px] font-medium text-ink-black">
+                {b(next.title)}
+              </span>
             </Link>
           ) : (
-            <Link href="/family-tree" className="btn btn-primary">
+            <Link href="/family-tree" className="btn btn-primary sm:col-start-2">
               {t("section.tree.cta")} →
             </Link>
           )}

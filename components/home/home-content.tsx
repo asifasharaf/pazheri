@@ -60,7 +60,7 @@ export function HomeContent({
       <section className="page-shell pt-16 pb-20 lg:pt-24 lg:pb-[100px]">
         <div className="mx-auto max-w-3xl text-center">
           <span className="eyebrow">{t("hero.eyebrow")}</span>
-          <h1 className="display-voice mt-6 text-heading text-ink-black sm:text-heading-lg lg:text-display">
+          <h1 className="super-heading mt-6 text-ink-black">
             {t("hero.title")}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-body-lg font-medium text-slate-600">
