@@ -61,9 +61,11 @@ file to the general secretary — the email and WhatsApp buttons do it — and
 committing it to `content/registrations/` publishes it for everyone; the tree
 picks it up at build time and grafts it onto the branch it names.
 
-Entries carry no phone number or email: the repository is public, so contact
-details travel only in the private message. See
-`content/registrations/README.md` for the format.
+Entries carry no phone number or email. Everything in an entry is rendered
+into the tree on the public site, so it is published regardless of whether
+this repository is private — contact details travel only in the private
+message to the secretary. See `content/registrations/README.md` for the
+format.
 
 ## Where the content lives
 

@@ -109,7 +109,6 @@
     line-height: var(--text-body-lg--line-height);
     letter-spacing: var(--text-body-lg--letter-spacing);
     font-feature-settings: "ss03" on;
-    -webkit-font-smoothing: antialiased;
   }
 
   /* Malayalam copy switches to a Malayalam-capable face while keeping the
@@ -140,14 +139,16 @@
   .super-heading {
     font-family: var(--font-super);
     font-weight: 700;
-    font-size: 34px;
-    line-height: 1.14;
+    font-size: 38px;
+    line-height: 1.16;
     letter-spacing: -0.5px;
+    /* Never let the browser fake a bolder cut — Gayathri stops at 700. */
+    font-synthesis-weight: none;
   }
 
   @media (min-width: 640px) {
     .super-heading {
-      font-size: 46px;
+      font-size: 48px;
       line-height: 1.08;
       letter-spacing: -0.7px;
     }

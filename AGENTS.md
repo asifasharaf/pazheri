@@ -66,8 +66,9 @@ redeploy.
 Registration works within that constraint: the form writes a markdown entry
 into the reader's browser (so their household appears in the tree at once) and
 downloads the same entry as the file that publishes it once committed to
-`content/registrations/`. Never commit phone numbers or emails there — the
-repository is public.
+`content/registrations/`. Never commit phone numbers or emails there. The
+reason is the *site*, not the repo: entries are rendered into the family tree
+on a public website, so a private repository would not make them private.
 
 If a feature seems to need a backend, say so plainly and propose the
 static-friendly version rather than quietly adding a server.
